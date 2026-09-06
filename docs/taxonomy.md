@@ -24,8 +24,9 @@ resolution gets logged in decisions.md.
 | Choose between specifications with different yield | v7 (43.9%, no interactions) vs. v8 (23.3%, theory-bearing interactions) | normative | Never delegated; agent makes the tradeoff visible (side-by-side pooled results) |
 | Drop a theory-bearing effect anywhere | Newcomer interactions carry the argument | normative | Always escalate, regardless of convergence benefit |
 | Admit a respecified network into pooled results | Any rescued Case-C-type network | normative | Always escalate; ledger records the specification delta and the human disposition |
+| Retain or exclude a network flagged for low Jaccard (< 0.20) | 109049 retained at Jaccard 0.095 | normative | Engine flags automatically and never decides; retention or exclusion is escalated with a sensitivity report; disposition recorded in the ledger (see decisions.md D9) |
 
-Open question from the walkthrough: network 109049 was retained with
-Jaccard 0.095, below the 0.20 stability guideline. Was the Jaccard
-threshold a flag or a rule? Classify 'retain a low-Jaccard network'
-before the schema freeze.
+The low-Jaccard case above was identified during development: the original
+workflow applied the 0.20 guideline as a flag, and network 109049 was
+retained despite Jaccard 0.095. Decision D9 in decisions.md confirms the
+flag-not-rule classification and the rationale.
