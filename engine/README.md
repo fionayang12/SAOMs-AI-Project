@@ -1,12 +1,12 @@
 # Engine
 
-RSiena estimation wrapper implementing the codified playbook from the
-401-network analysis (Howard). The v8 monolith lives in `legacy/` as the
+RSiena estimation wrapper implementing the codified playbook from a
+401-network analysis by human researchers. The original lives in `legacy/` as the
 reference implementation; `estimate_one.R` is the modular carve-out.
 
 **The contract is the seam**: `estimate_one.R` speaks JSON on stdout
-(see CONTRACT.md). The agent, ledger, and tests all attach at that seam and
-never reach inside the R code.
+(see CONTRACT.md). The agent, ledger, and tests all connect at that seam and
+remain outside the R code.
 
 Playbook rules implemented here (see docs/taxonomy.md for classifications):
 - Per-network deterministic seeds: `12345 + ego_spell_id`, `+10000`/attempt
