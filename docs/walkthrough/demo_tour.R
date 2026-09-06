@@ -1,8 +1,7 @@
 # ==============================================================================
-# SECTION 4 WALKTHROUGH (v2): Cases pinned from the actual v8 results
-# Mike + Fiona coordination meeting
+# A guided tour of three exemplar networks
 # ==============================================================================
-# CHOSEN EXEMPLARS (verified against SAOM_newcomer_results_v8.csv):
+# CHOSEN EXEMPLARS:
 #
 #   CASE A = 308631  (stratum A, 58 inventors, 13 newcomers)
 #     Clean baseline: conv ratio 0.051, Jaccard 0.323, max SE 1.68.
