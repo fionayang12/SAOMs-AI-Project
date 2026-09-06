@@ -19,8 +19,14 @@ Format: ID | date | decision | rationale. Append; never rewrite history.
 - **D5** | 2026-09 | Data policy: demo derived data committed; full corpus
   and raw bulk files never committed (see data/README.md). | Reproducibility
   with restraint; repo stays small and public-safe.
-- **D6** | OPEN | Ledger schema freeze (v0.1 drafted in ledger/schema.json).
-  | Pressure-test against the three walkthrough cases, then freeze.
+- **D6** | 2026-09 | Ledger schema frozen at v1.0 (ledger/schema.json) for
+  Stage 1. | The v0.1 draft was pressure-tested against the three demo
+  networks and absorbed the D9 addition (a new normative node with a
+  different actor, escalation state, and human disposition) without
+  requiring new fields; the demo ledger now exercises every record state
+  the schema defines (routine implementation, resolved normative, pending
+  normative). Future schema changes are institutional-boundary decisions:
+  proposed with rationale, human-approved, version-bumped, and logged here.
 - **D7** | OPEN | Record the exact RSiena version of the v8 run
   (`packageVersion("RSiena")` on the analysis machine); pin in renv. |
   Seed-level reproduction requires it.
