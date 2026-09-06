@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Decision ledger record (v0.1)",
+  "type": "object",
+  "required": [
+    "record_id",
+    "timestamp",
+    "decision_node",
+    "boundary_class",
+    "actor",
+    "action"
+  ],
+  "properties": {
+    "record_id": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "description": "ISO 8601 UTC"
+    },
+    "ego_spell_id": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "decision_node": {
+      "type": "string",
+      "description": "Node name from docs/taxonomy.md"
+    },
+    "boundary_class": {
+      "enum": [
+        "implementation",
+        "institutional",
+        "normative"
+      ]
+    },
+    "actor": {
+      "enum": [
+        "rule",
+        "agent",
+        "human"
+      ]
+    },
+    "action": {
+      "type": "string"
+    },
+    "proposal": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Agent proposal text, institutional nodes"
+    },
+    "evidence": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Proof the action took effect (seeds, diagnostics, versions)"
+    },
+    "escalation_status": {
+      "enum": [
+        "none",
+        "pending",
+        "resolved",
+        null
+      ]
+    },
+    "human_disposition": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Required before a normative decision is final"
+    },
+    "counterfactual_ref": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Path/id of sensitivity output for paths not taken"
+    }
+  }
+}
