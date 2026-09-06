@@ -37,6 +37,23 @@ def main():
                 escalation_status="pending",
             )
             print("  -> SE screen tripped: escalated to human (see ledger)")
+        if flags.get("jaccard_below_020"):
+            # Normative boundary (D9): low Jaccard flagged for human decision.
+            # For the demo networks the retention decision was made by the 
+            # researchers in the original analysis, do the record carries
+            # actor="human" and a resolved status with its disposition. When
+            # the agent layer later meets a NEWLY flagged network, this same
+            # node fires with actor="agent" and escalation_status="pending"
+            # until a human disposes of it.
+            append_record(
+                ego_spell_id=ego, decision_node="retain_low_jaccard_network",
+                boundary_class="normative", actor="human",
+                action="retained despite Jaccard below 0.20",
+                evidence={"jaccard": out["descriptives"].get("jaccard")},
+                escalation_status="resolved",
+                human_disposition="retaied, consistent with the original "
+                                  "analysis (decisions.md D9)",
+            )
         print(f"  status: {out['final']['status']}; "
               f"conv_ratio={last.get('conv_ratio'):.3f}; max_se={last.get('max_se'):.1f}")
     print("\nLedger written to ledger/records.jsonl")
