@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Decision ledger record (v0.1)",
+  "title": "Decision ledger record (v1.0)",
   "type": "object",
   "required": [
     "record_id",
