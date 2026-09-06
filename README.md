@@ -12,8 +12,8 @@ Actor-oriented network models are theoretically powerful and practically
 inaccessible at scale. This repository contains (1) an estimation engine that
 scales SAOM estimation across many networks, (2) an agent layer that manages
 specification and convergence decisions under an ex ante boundary taxonomy,
-and (3) a decision ledger that records every decision, its evidence, and its
-counterfactual, so that scale never comes at the expense of scrutiny.
+and (3) a decision ledger that records every decision of the AI engine, 
+its evidence, and its counterfactual.
 
 ## Quickstart (demo: three exemplar networks)
 
