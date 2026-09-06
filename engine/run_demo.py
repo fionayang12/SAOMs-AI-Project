@@ -40,7 +40,7 @@ def main():
         if flags.get("jaccard_below_020"):
             # Normative boundary (D9): low Jaccard flagged for human decision.
             # For the demo networks the retention decision was made by the 
-            # researchers in the original analysis, do the record carries
+            # researchers in the original analysis, so the record carries
             # actor="human" and a resolved status with its disposition. When
             # the agent layer later meets a NEWLY flagged network, this same
             # node fires with actor="agent" and escalation_status="pending"
