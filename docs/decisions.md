@@ -27,3 +27,12 @@ Format: ID | date | decision | rationale. Append; never rewrite history.
 - **D8** | OPEN | Agent model selection (open-weight reference
   configuration) and hardware assignment. | Access-requirements section of
   the technical appendix depends on this.
+- **D9** | 2026-09 | Jaccard < 0.20 remains a FLAG, not an exclusion rule.
+  The engine computes and reports it (`jaccard_below_020` in the JSON
+  contract); retention or exclusion of a flagged network is always a human
+  decision, escalated through the ledger. | Considered promoting the flag to
+  an automatic rule; rejected because exclusion changes the analytic sample,
+  which is a normative-boundary decision under the taxonomy, and because
+  retroactive application would alter the published 93-network sample
+  (network 109049 was retained at Jaccard 0.095). Consistency requires that
+  sample-defining thresholds never execute without documentation.
