@@ -4,7 +4,8 @@ Format: ID | date | decision | rationale. Append; never rewrite history.
 
 - **D1** | 2026-09 | Per-network deterministic seeds: `12345 + ego_spell_id`,
   `+10000` per attempt (carried over from the v8 run). | Every estimation is
-  replayable from the ego id alone; stronger reproducibility than a global seed.
+  replayable from the ego id alone; stronger reproducibility than a global
+  seed.
 - **D2** | 2026-09 | Python orchestration calls R via `Rscript` subprocess
   with a JSON contract (engine/CONTRACT.md); no rpy2. | Debuggability; clean
   seam for agent, ledger, and tests; plays to team language strengths.
@@ -36,9 +37,8 @@ Format: ID | date | decision | rationale. Append; never rewrite history.
   carries version evidence with every estimation. Replicators on a newer
   default can install the pinned version via
   remotes::install_version("RSiena", "1.6.6").
-- **D8** | OPEN | Agent model selection (open-weight reference
-  configuration) and hardware assignment. | Access-requirements section of
-  the technical appendix depends on this.
+- **D8** | 2026-09 | Reference model configuration: Qwen3 14B (Apache 2.0),
+  served locally via Ollama's OpenAI-compatible endpoint
 - **D9** | 2026-09 | Jaccard < 0.20 remains a FLAG, not an exclusion rule.
   The engine computes and reports it (`jaccard_below_020` in the JSON
   contract); retention or exclusion of a flagged network is always a human
