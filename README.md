@@ -46,8 +46,5 @@ pytest tests/
 - Estimation seeds are deterministic per network: `base_seed = 12345 +
   ego_spell_id`, attempt offset `+10000`. Every estimation in the corpus is
   replayable from the ego id alone.
-- **RSiena version matters**: seed-level reproduction requires the same RSiena
-  version as the original run. Record the exact version in
-  `docs/decisions.md` (TODO: confirm from the v8 machine with
-  `packageVersion("RSiena")`).
+- **RSiena version matters**: Seed-level reproduction requires RSiena 1.6.6, the version used for the original run (see docs/decisions.md D7).
 - R packages: RSiena, tidyverse, jsonlite. Python: see `requirements.txt`.
