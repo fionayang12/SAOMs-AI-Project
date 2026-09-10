@@ -27,9 +27,15 @@ Format: ID | date | decision | rationale. Append; never rewrite history.
   the schema defines (routine implementation, resolved normative, pending
   normative). Future schema changes are institutional-boundary decisions:
   proposed with rationale, human-approved, version-bumped, and logged here.
-- **D7** | OPEN | Record the exact RSiena version of the v8 run
-  (`packageVersion("RSiena")` on the analysis machine); pin in renv. |
-  Seed-level reproduction requires it.
+- **D7** | 2026-09 | RSiena version pinned: 1.6.6, the version used for the
+  v8 run. Recorded here and in the root README; renv lockfile to follow
+  once the R environment is captured. | Estimation is simulation-based, so
+  seed-level reproduction of the recorded run requires this exact version;
+  on other versions the qualitative pattern holds but exact numbers differ.
+  The engine reports its RSiena version in every JSON result, so the ledger
+  carries version evidence with every estimation. Replicators on a newer
+  default can install the pinned version via
+  remotes::install_version("RSiena", "1.6.6").
 - **D8** | OPEN | Agent model selection (open-weight reference
   configuration) and hardware assignment. | Access-requirements section of
   the technical appendix depends on this.
