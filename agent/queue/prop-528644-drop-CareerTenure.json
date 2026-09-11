@@ -1,0 +1,26 @@
+{
+  "proposal_id": "prop-528644-drop-CareerTenure",
+  "ego": 528644,
+  "node": "drop_peripheral_effect",
+  "proposed_action": {
+    "drop": "CareerTenure"
+  },
+  "evidence": {
+    "unstable_effect": "CareerTenure ego",
+    "se": 134.617695,
+    "attempts": [
+      {
+        "attempt": 1,
+        "seed": 540989,
+        "conv_ratio": 0.264425,
+        "max_abs_t": 0.015718,
+        "max_se": 134.617695,
+        "converged": true
+      }
+    ]
+  },
+  "rationale": "The decision to re-estimate the model with the covariate \"CareerTenure\" dropped for network 528644 was made due to the instability of the parameter \"CareerTenure ego,\" as evidenced by its excessively high standard error (SE = 134.6). This instability likely compromised the reliability of inferences involving this parameter within the network. Removing the covariate addresses the issue by eliminating a source of variability that undermined model stability, ensuring more robust estimates for the remaining parameters. This adjustment was implemented specifically for network 528644 to align with the observed data characteristics and maintain methodological integrity.",
+  "status": "pending",
+  "disposed_by": null,
+  "disposition_note": null
+}

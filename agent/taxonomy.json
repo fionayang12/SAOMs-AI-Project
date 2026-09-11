@@ -1,0 +1,73 @@
+{
+  "version": "1.0",
+  "source": "docs/taxonomy.md",
+  "classes": {
+    "implementation": {
+      "agent_may_execute": true,
+      "requires_signoff": false,
+      "requires_escalation": false
+    },
+    "institutional": {
+      "agent_may_execute": false,
+      "requires_signoff": true,
+      "requires_escalation": false
+    },
+    "normative": {
+      "agent_may_execute": false,
+      "requires_signoff": false,
+      "requires_escalation": true
+    }
+  },
+  "nodes": {
+    "estimate_with_retry": {
+      "class": "implementation"
+    },
+    "apply_thresholds": {
+      "class": "implementation"
+    },
+    "wave_construction": {
+      "class": "implementation"
+    },
+    "skip_single_year_network": {
+      "class": "implementation"
+    },
+    "drop_peripheral_effect": {
+      "class": "institutional"
+    },
+    "wave_design_choice": {
+      "class": "institutional"
+    },
+    "data_construction_heuristic": {
+      "class": "institutional"
+    },
+    "change_global_threshold": {
+      "class": "institutional"
+    },
+    "exclude_unstable_network": {
+      "class": "normative"
+    },
+    "choose_specification": {
+      "class": "normative"
+    },
+    "drop_theory_bearing_effect": {
+      "class": "normative"
+    },
+    "admit_respecified_network": {
+      "class": "normative"
+    },
+    "retain_low_jaccard_network": {
+      "class": "normative"
+    }
+  },
+  "effects": {
+    "droppable": [
+      "CareerTenure",
+      "NetworkConstraint"
+    ],
+    "protected": [
+      "Newcomer",
+      "InventorDegree"
+    ],
+    "protected_rationale": "Newcomer terms carry the theoretical argument; InventorDegree is a stated contribution. Dropping any protected effect is drop_theory_bearing_effect (normative)."
+  }
+}

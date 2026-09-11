@@ -1,17 +1,31 @@
 #!/usr/bin/env Rscript
-# Estimate one ego network under the v8 specification; JSON contract v0.1.
+# Estimate one ego network under the v8 specification; JSON contract v0.2.
 # Usage: Rscript engine/estimate_one.R --ego 308631 --data data/demo
+#        Rscript engine/estimate_one.R --ego 528644 --data data/demo --drop CareerTenure
+#
+# --drop removes the egoX effect for the named covariate (CareerTenure or
+# NetworkConstraint only). Theory-bearing effects (Newcomer terms,
+# InventorDegree) cannot be dropped here: the engine refuses, because that
+# decision is normative (docs/taxonomy.md) and no executable path may exist
+# for it below the human layer.
 suppressPackageStartupMessages({ library(RSiena); library(jsonlite) })
 
-# --- args ---------------------------------------------------------------
+sink(nullfile())  # divert console chatter; the contract permits JSON only on stdout
+
 args <- commandArgs(trailingOnly = TRUE)
 gv <- function(flag, default = NULL) {
   i <- which(args == flag); if (length(i)) args[i + 1] else default
 }
 EGO      <- as.integer(gv("--ego"))
 DATA_DIR <- gv("--data", "data/demo")
+DROP     <- gv("--drop", NA)
 MAX_ATTEMPTS <- 5; CONV_THRESH <- 0.30; SE_SCREEN <- 100
 stopifnot(!is.na(EGO))
+
+DROPPABLE <- c("CareerTenure", "NetworkConstraint")
+if (!is.na(DROP) && !(DROP %in% DROPPABLE))
+  stop(sprintf("--drop %s refused: only peripheral covariates (%s) may be dropped by this path; see docs/taxonomy.md",
+               DROP, paste(DROPPABLE, collapse = ", ")))
 
 el <- read.csv(file.path(DATA_DIR, "walkthrough_edgelist.csv"))
 nd <- read.csv(file.path(DATA_DIR, "walkthrough_node_attributes.csv"))
@@ -51,7 +65,9 @@ dat <- sienaDataCreate(waves, Newcomer, CareerTenure, NetworkConstraint, Invento
 eff <- getEffects(dat)
 eff <- includeEffects(eff, transTies)
 eff <- includeEffects(eff, degPlus)
-for (cv in c("Newcomer", "CareerTenure", "NetworkConstraint", "InventorDegree"))
+covariates <- c("Newcomer", "CareerTenure", "NetworkConstraint", "InventorDegree")
+if (!is.na(DROP)) covariates <- setdiff(covariates, DROP)
+for (cv in covariates)
   eff <- includeEffects(eff, egoX, interaction1 = cv)
 eff <- includeInteraction(eff, egoX, transTies, interaction1 = c("Newcomer", ""))
 eff <- includeInteraction(eff, egoX, degPlus,   interaction1 = c("Newcomer", ""))
@@ -62,7 +78,7 @@ base_seed <- 12345 + EGO
 attempts <- list(); final_fit <- NULL
 for (attempt in seq_len(MAX_ATTEMPTS)) {
   seed <- base_seed + (attempt - 1) * 10000
-  # sienaAlgorithmCreate must sit INSIDE the loop (see docs/decisions.md).
+  # sienaAlgorithmCreate must sit INSIDE the loop (docs/decisions.md D3).
   algo <- sienaAlgorithmCreate(projname = paste0("ego_", EGO),
                                n3 = 5000, nsub = 6, maxlike = FALSE, seed = seed)
   fit <- tryCatch(siena07(algo, data = dat, effects = eff, batch = TRUE,
@@ -74,7 +90,7 @@ for (attempt in seq_len(MAX_ATTEMPTS)) {
   }
   ses <- sqrt(diag(fit$covtheta))
   rec <- list(attempt = attempt, seed = seed,
-              conv_ratio = unname(fit$tconv.max),
+              conv_ratio = as.numeric(fit$tconv.max),
               max_abs_t = max(abs(fit$tconv), na.rm = TRUE),
               max_se = max(ses, na.rm = TRUE),
               converged = isTRUE(fit$tconv.max < CONV_THRESH))
@@ -84,14 +100,16 @@ for (attempt in seq_len(MAX_ATTEMPTS)) {
 }
 
 # --- module: diagnostics + JSON out -------------------------------------
+spec <- list(version = "v8",
+             dropped = if (is.na(DROP)) list() else list(DROP))
 if (is.null(final_fit)) {
   out <- list(ego = EGO, descriptives = desc, attempts = attempts,
-              final = list(status = "error"))
+              spec = spec, final = list(status = "error"))
 } else {
   ses <- sqrt(diag(final_fit$covtheta))
   status <- if (isTRUE(final_fit$tconv.max < CONV_THRESH)) "converged" else "not_converged"
   out <- list(
-    ego = EGO, descriptives = desc, attempts = attempts,
+    ego = EGO, descriptives = desc, attempts = attempts, spec = spec,
     final = list(
       status = status,
       estimates = lapply(seq_along(final_fit$theta), function(i) list(
@@ -105,4 +123,5 @@ if (is.null(final_fit)) {
                     rsiena = as.character(packageVersion("RSiena")))
   )
 }
+sink()
 cat(toJSON(out, auto_unbox = TRUE, digits = 6, na = "null"))

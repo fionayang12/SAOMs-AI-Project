@@ -1,0 +1,567 @@
+
+
+-----------------------------------
+New Analysis started.
+Date and time: 10/09/2026 16:31:07
+New results follow.
+-----------------------------------
+
+RSiena version 1.6.6 (20 Apr 26)
+
+
+@1
+Estimation by stochastic approximation algorithm.
+=================================================
+
+Current random number seed is 121394.
+Effects object used: eff 
+Model Type:
+ Forcing model 
+Note that the model type requested has been over-ridden
+Estimation method: conditional moment estimation.
+Conditioning variable is the total number of observed changes ("distance") 
+in the network variable.
+Distance for simulations is  360 .
+Standard errors are estimated with the likelihood ratio method.
+Dolby method (regression on scores) is used.
+Initial value of gain parameter is  0.2000000.
+Reduction factor for gain parameter is  0.5000000.
+Number of subphases in Phase 2 is 6.
+
+Initial parameter values are 
+  0. Rate parameter                          11.4293
+  1. eval:  degree (density)                               -1.3524
+  2. eval:  transitive ties                                 0.0000
+  3. eval:  degree act+pop                                  0.0000
+  4. eval:  Newcomer ego                                    0.0000
+  5. eval:  CareerTenure ego                                0.0000
+  6. eval:  NetworkConstraint ego                           0.0000
+  7. eval:  InventorDegree ego                              0.0000
+  8. eval:  Newcomer ego x transitive ties                  0.0000
+  9. eval:  Newcomer ego x degree act+pop                   0.0000
+
+
+Values of target statistics are
+  1. Number of edges                                                    122.0000
+  2. Number of ties with transitive closure                             236.0000
+  3. Sum of squared degrees                                            3856.0000
+  4. Sum of degrees x Newcomer                                            0.5000
+  5. Sum of degrees x CareerTenure                                      184.8402
+  6. Sum of degrees x NetworkConstraint                                  -7.2092
+  7. Sum of degrees x InventorDegree                                    863.8750
+  8. Newcomer ego x transitive ties                                       0.5000
+  9. Newcomer ego x degree act+pop                                      -44.0000
+These were calculated from the data.
+
+ 9 parameters, 9 statistics
+
+
+
+-----------------------------------
+New Analysis started.
+Date and time: 10/09/2026 16:31:25
+New results follow.
+-----------------------------------
+
+RSiena version 1.6.6 (20 Apr 26)
+
+
+@1
+Estimation by stochastic approximation algorithm.
+=================================================
+
+Current random number seed is 131394.
+Effects object used: eff 
+Model Type:
+ Forcing model 
+Note that the model type requested has been over-ridden
+Estimation method: conditional moment estimation.
+Conditioning variable is the total number of observed changes ("distance") 
+in the network variable.
+Distance for simulations is  360 .
+Standard errors are estimated with the likelihood ratio method.
+Dolby method (regression on scores) is used.
+Initial value of gain parameter is  0.2000000.
+Reduction factor for gain parameter is  0.5000000.
+Number of subphases in Phase 2 is 6.
+
+Initial parameter values are 
+  0. Rate parameter                          11.4293
+  1. eval:  degree (density)                               -1.3524
+  2. eval:  transitive ties                                 0.0000
+  3. eval:  degree act+pop                                  0.0000
+  4. eval:  Newcomer ego                                    0.0000
+  5. eval:  CareerTenure ego                                0.0000
+  6. eval:  NetworkConstraint ego                           0.0000
+  7. eval:  InventorDegree ego                              0.0000
+  8. eval:  Newcomer ego x transitive ties                  0.0000
+  9. eval:  Newcomer ego x degree act+pop                   0.0000
+
+
+Values of target statistics are
+  1. Number of edges                                                    122.0000
+  2. Number of ties with transitive closure                             236.0000
+  3. Sum of squared degrees                                            3856.0000
+  4. Sum of degrees x Newcomer                                            0.5000
+  5. Sum of degrees x CareerTenure                                      184.8402
+  6. Sum of degrees x NetworkConstraint                                  -7.2092
+  7. Sum of degrees x InventorDegree                                    863.8750
+  8. Newcomer ego x transitive ties                                       0.5000
+  9. Newcomer ego x degree act+pop                                      -44.0000
+These were calculated from the data.
+
+ 9 parameters, 9 statistics
+
+Estimation of derivatives by the LR method (type 1).
+
+
+@2
+End of stochastic approximation algorithm, phase 3.
+---------------------------------------------------
+
+Total of 12529 iterations.
+Parameter estimates based on 7529 iterations,
+basic rate parameter as well as 
+convergence diagnostics, covariance and derivative matrices based on 5000 iterations.
+
+Information for convergence diagnosis.
+Averages, standard deviations, and t-ratios for deviations from targets:
+  1.   0.5088  12.4436   0.0409 
+  2.  -0.0116  25.7345  -0.0005 
+  3.   1.5896 680.9052   0.0023 
+  4.   0.0744   8.3323   0.0089 
+  5.   0.8451 119.2560   0.0071 
+  6.   0.2140   5.0766   0.0421 
+  7.  -1.7434 251.1374  -0.0069 
+  8.   0.0698   8.3331   0.0084 
+  9.   2.2583 148.2716   0.0152 
+
+Good convergence is indicated by the t-ratios being close to zero.
+
+Overall maximum convergence ratio =  0.2596 .
+
+
+
+@2
+Estimation Results.
+-------------------
+
+Regular end of estimation algorithm.
+Total of 12529 iteration steps.
+
+
+@3
+Estimates and standard errors
+                             
+Rate parameters:
+ 0. Rate parameter                           31.0828  (  36.2238)
+
+Other parameters:
+ 1. eval:  degree (density)                                       -5.5350  (   0.6912)
+ 2. eval:  transitive ties                                         4.8134  (   0.9983)
+ 3. eval:  degree act+pop                                         -0.0108  (   0.0177)
+ 4. eval:  Newcomer ego                                            0.3722  (   6.4720)
+ 5. eval:  CareerTenure ego                                       -0.0009  (   0.0285)
+ 6. eval:  NetworkConstraint ego                                  -0.8282  (   0.4771)
+ 7. eval:  InventorDegree ego                                      0.0201  (   0.0133)
+ 8. eval:  Newcomer ego x transitive ties                          0.6913  (   9.8026)
+ 9. eval:  Newcomer ego x degree act+pop                          -0.0472  (   0.1550)
+
+
+@3
+Covariance matrices
+                   
+Covariance matrix of estimates (correlations below diagonal):
+     0.478     -0.658      0.007      0.607     -0.003      0.105     -0.002     -1.171      0.026
+    -0.954      0.997     -0.013     -1.649      0.007     -0.182      0.005      2.899     -0.056
+     0.543     -0.763      0.000      0.048      0.000      0.003      0.000     -0.079      0.001
+     0.136     -0.255      0.417     41.886     -0.147     -0.170     -0.002    -62.901      0.899
+    -0.156      0.246     -0.358     -0.796      0.001      0.000      0.000      0.220     -0.003
+     0.320     -0.382      0.374     -0.055      0.014      0.228     -0.002      0.196     -0.003
+    -0.241      0.362     -0.573     -0.028     -0.101     -0.262      0.000      0.006      0.000
+    -0.173      0.296     -0.456     -0.991      0.786      0.042      0.045     96.090     -1.436
+     0.243     -0.363      0.500      0.897     -0.725     -0.035     -0.042     -0.945      0.024
+
+Derivative matrix of expected statistics X by parameters and
+covariance/correlation matrix of X can be found using
+summary(ans) within R, or by using the 'verbose' option in Siena07.
+ 
+Total computation time 377.23 seconds.
+
+
+-----------------------------------
+New Analysis started.
+Date and time: 10/09/2026 19:00:45
+New results follow.
+-----------------------------------
+
+RSiena version 1.6.6 (20 Apr 26)
+
+
+@1
+Estimation by stochastic approximation algorithm.
+=================================================
+
+Current random number seed is 121394.
+Effects object used: eff 
+Model Type:
+ Forcing model 
+Note that the model type requested has been over-ridden
+Estimation method: conditional moment estimation.
+Conditioning variable is the total number of observed changes ("distance") 
+in the network variable.
+Distance for simulations is  360 .
+Standard errors are estimated with the likelihood ratio method.
+Dolby method (regression on scores) is used.
+Initial value of gain parameter is  0.2000000.
+Reduction factor for gain parameter is  0.5000000.
+Number of subphases in Phase 2 is 6.
+
+Initial parameter values are 
+  0. Rate parameter                          11.4293
+  1. eval:  degree (density)                               -1.3524
+  2. eval:  transitive ties                                 0.0000
+  3. eval:  degree act+pop                                  0.0000
+  4. eval:  Newcomer ego                                    0.0000
+  5. eval:  CareerTenure ego                                0.0000
+  6. eval:  NetworkConstraint ego                           0.0000
+  7. eval:  InventorDegree ego                              0.0000
+  8. eval:  Newcomer ego x transitive ties                  0.0000
+  9. eval:  Newcomer ego x degree act+pop                   0.0000
+
+
+Values of target statistics are
+  1. Number of edges                                                    122.0000
+  2. Number of ties with transitive closure                             236.0000
+  3. Sum of squared degrees                                            3856.0000
+  4. Sum of degrees x Newcomer                                            0.5000
+  5. Sum of degrees x CareerTenure                                      184.8402
+  6. Sum of degrees x NetworkConstraint                                  -7.2092
+  7. Sum of degrees x InventorDegree                                    863.8750
+  8. Newcomer ego x transitive ties                                       0.5000
+  9. Newcomer ego x degree act+pop                                      -44.0000
+These were calculated from the data.
+
+ 9 parameters, 9 statistics
+
+
+
+-----------------------------------
+New Analysis started.
+Date and time: 10/09/2026 19:01:03
+New results follow.
+-----------------------------------
+
+RSiena version 1.6.6 (20 Apr 26)
+
+
+@1
+Estimation by stochastic approximation algorithm.
+=================================================
+
+Current random number seed is 131394.
+Effects object used: eff 
+Model Type:
+ Forcing model 
+Note that the model type requested has been over-ridden
+Estimation method: conditional moment estimation.
+Conditioning variable is the total number of observed changes ("distance") 
+in the network variable.
+Distance for simulations is  360 .
+Standard errors are estimated with the likelihood ratio method.
+Dolby method (regression on scores) is used.
+Initial value of gain parameter is  0.2000000.
+Reduction factor for gain parameter is  0.5000000.
+Number of subphases in Phase 2 is 6.
+
+Initial parameter values are 
+  0. Rate parameter                          11.4293
+  1. eval:  degree (density)                               -1.3524
+  2. eval:  transitive ties                                 0.0000
+  3. eval:  degree act+pop                                  0.0000
+  4. eval:  Newcomer ego                                    0.0000
+  5. eval:  CareerTenure ego                                0.0000
+  6. eval:  NetworkConstraint ego                           0.0000
+  7. eval:  InventorDegree ego                              0.0000
+  8. eval:  Newcomer ego x transitive ties                  0.0000
+  9. eval:  Newcomer ego x degree act+pop                   0.0000
+
+
+Values of target statistics are
+  1. Number of edges                                                    122.0000
+  2. Number of ties with transitive closure                             236.0000
+  3. Sum of squared degrees                                            3856.0000
+  4. Sum of degrees x Newcomer                                            0.5000
+  5. Sum of degrees x CareerTenure                                      184.8402
+  6. Sum of degrees x NetworkConstraint                                  -7.2092
+  7. Sum of degrees x InventorDegree                                    863.8750
+  8. Newcomer ego x transitive ties                                       0.5000
+  9. Newcomer ego x degree act+pop                                      -44.0000
+These were calculated from the data.
+
+ 9 parameters, 9 statistics
+
+Estimation of derivatives by the LR method (type 1).
+
+
+@2
+End of stochastic approximation algorithm, phase 3.
+---------------------------------------------------
+
+Total of 12529 iterations.
+Parameter estimates based on 7529 iterations,
+basic rate parameter as well as 
+convergence diagnostics, covariance and derivative matrices based on 5000 iterations.
+
+Information for convergence diagnosis.
+Averages, standard deviations, and t-ratios for deviations from targets:
+  1.   0.5088  12.4436   0.0409 
+  2.  -0.0116  25.7345  -0.0005 
+  3.   1.5896 680.9052   0.0023 
+  4.   0.0744   8.3323   0.0089 
+  5.   0.8451 119.2560   0.0071 
+  6.   0.2140   5.0766   0.0421 
+  7.  -1.7434 251.1374  -0.0069 
+  8.   0.0698   8.3331   0.0084 
+  9.   2.2583 148.2716   0.0152 
+
+Good convergence is indicated by the t-ratios being close to zero.
+
+Overall maximum convergence ratio =  0.2596 .
+
+
+
+@2
+Estimation Results.
+-------------------
+
+Regular end of estimation algorithm.
+Total of 12529 iteration steps.
+
+
+@3
+Estimates and standard errors
+                             
+Rate parameters:
+ 0. Rate parameter                           31.0828  (  36.2238)
+
+Other parameters:
+ 1. eval:  degree (density)                                       -5.5350  (   0.6912)
+ 2. eval:  transitive ties                                         4.8134  (   0.9983)
+ 3. eval:  degree act+pop                                         -0.0108  (   0.0177)
+ 4. eval:  Newcomer ego                                            0.3722  (   6.4720)
+ 5. eval:  CareerTenure ego                                       -0.0009  (   0.0285)
+ 6. eval:  NetworkConstraint ego                                  -0.8282  (   0.4771)
+ 7. eval:  InventorDegree ego                                      0.0201  (   0.0133)
+ 8. eval:  Newcomer ego x transitive ties                          0.6913  (   9.8026)
+ 9. eval:  Newcomer ego x degree act+pop                          -0.0472  (   0.1550)
+
+
+@3
+Covariance matrices
+                   
+Covariance matrix of estimates (correlations below diagonal):
+     0.478     -0.658      0.007      0.607     -0.003      0.105     -0.002     -1.171      0.026
+    -0.954      0.997     -0.013     -1.649      0.007     -0.182      0.005      2.899     -0.056
+     0.543     -0.763      0.000      0.048      0.000      0.003      0.000     -0.079      0.001
+     0.136     -0.255      0.417     41.886     -0.147     -0.170     -0.002    -62.901      0.899
+    -0.156      0.246     -0.358     -0.796      0.001      0.000      0.000      0.220     -0.003
+     0.320     -0.382      0.374     -0.055      0.014      0.228     -0.002      0.196     -0.003
+    -0.241      0.362     -0.573     -0.028     -0.101     -0.262      0.000      0.006      0.000
+    -0.173      0.296     -0.456     -0.991      0.786      0.042      0.045     96.090     -1.436
+     0.243     -0.363      0.500      0.897     -0.725     -0.035     -0.042     -0.945      0.024
+
+Derivative matrix of expected statistics X by parameters and
+covariance/correlation matrix of X can be found using
+summary(ans) within R, or by using the 'verbose' option in Siena07.
+ 
+Total computation time 372.11 seconds.
+
+
+-----------------------------------
+New Analysis started.
+Date and time: 10/09/2026 19:21:22
+New results follow.
+-----------------------------------
+
+RSiena version 1.6.6 (20 Apr 26)
+
+
+@1
+Estimation by stochastic approximation algorithm.
+=================================================
+
+Current random number seed is 121394.
+Effects object used: eff 
+Model Type:
+ Forcing model 
+Note that the model type requested has been over-ridden
+Estimation method: conditional moment estimation.
+Conditioning variable is the total number of observed changes ("distance") 
+in the network variable.
+Distance for simulations is  360 .
+Standard errors are estimated with the likelihood ratio method.
+Dolby method (regression on scores) is used.
+Initial value of gain parameter is  0.2000000.
+Reduction factor for gain parameter is  0.5000000.
+Number of subphases in Phase 2 is 6.
+
+Initial parameter values are 
+  0. Rate parameter                          11.4293
+  1. eval:  degree (density)                               -1.3524
+  2. eval:  transitive ties                                 0.0000
+  3. eval:  degree act+pop                                  0.0000
+  4. eval:  Newcomer ego                                    0.0000
+  5. eval:  CareerTenure ego                                0.0000
+  6. eval:  NetworkConstraint ego                           0.0000
+  7. eval:  InventorDegree ego                              0.0000
+  8. eval:  Newcomer ego x transitive ties                  0.0000
+  9. eval:  Newcomer ego x degree act+pop                   0.0000
+
+
+Values of target statistics are
+  1. Number of edges                                                    122.0000
+  2. Number of ties with transitive closure                             236.0000
+  3. Sum of squared degrees                                            3856.0000
+  4. Sum of degrees x Newcomer                                            0.5000
+  5. Sum of degrees x CareerTenure                                      184.8402
+  6. Sum of degrees x NetworkConstraint                                  -7.2092
+  7. Sum of degrees x InventorDegree                                    863.8750
+  8. Newcomer ego x transitive ties                                       0.5000
+  9. Newcomer ego x degree act+pop                                      -44.0000
+These were calculated from the data.
+
+ 9 parameters, 9 statistics
+
+
+
+-----------------------------------
+New Analysis started.
+Date and time: 10/09/2026 19:21:40
+New results follow.
+-----------------------------------
+
+RSiena version 1.6.6 (20 Apr 26)
+
+
+@1
+Estimation by stochastic approximation algorithm.
+=================================================
+
+Current random number seed is 131394.
+Effects object used: eff 
+Model Type:
+ Forcing model 
+Note that the model type requested has been over-ridden
+Estimation method: conditional moment estimation.
+Conditioning variable is the total number of observed changes ("distance") 
+in the network variable.
+Distance for simulations is  360 .
+Standard errors are estimated with the likelihood ratio method.
+Dolby method (regression on scores) is used.
+Initial value of gain parameter is  0.2000000.
+Reduction factor for gain parameter is  0.5000000.
+Number of subphases in Phase 2 is 6.
+
+Initial parameter values are 
+  0. Rate parameter                          11.4293
+  1. eval:  degree (density)                               -1.3524
+  2. eval:  transitive ties                                 0.0000
+  3. eval:  degree act+pop                                  0.0000
+  4. eval:  Newcomer ego                                    0.0000
+  5. eval:  CareerTenure ego                                0.0000
+  6. eval:  NetworkConstraint ego                           0.0000
+  7. eval:  InventorDegree ego                              0.0000
+  8. eval:  Newcomer ego x transitive ties                  0.0000
+  9. eval:  Newcomer ego x degree act+pop                   0.0000
+
+
+Values of target statistics are
+  1. Number of edges                                                    122.0000
+  2. Number of ties with transitive closure                             236.0000
+  3. Sum of squared degrees                                            3856.0000
+  4. Sum of degrees x Newcomer                                            0.5000
+  5. Sum of degrees x CareerTenure                                      184.8402
+  6. Sum of degrees x NetworkConstraint                                  -7.2092
+  7. Sum of degrees x InventorDegree                                    863.8750
+  8. Newcomer ego x transitive ties                                       0.5000
+  9. Newcomer ego x degree act+pop                                      -44.0000
+These were calculated from the data.
+
+ 9 parameters, 9 statistics
+
+Estimation of derivatives by the LR method (type 1).
+
+
+@2
+End of stochastic approximation algorithm, phase 3.
+---------------------------------------------------
+
+Total of 12529 iterations.
+Parameter estimates based on 7529 iterations,
+basic rate parameter as well as 
+convergence diagnostics, covariance and derivative matrices based on 5000 iterations.
+
+Information for convergence diagnosis.
+Averages, standard deviations, and t-ratios for deviations from targets:
+  1.   0.5088  12.4436   0.0409 
+  2.  -0.0116  25.7345  -0.0005 
+  3.   1.5896 680.9052   0.0023 
+  4.   0.0744   8.3323   0.0089 
+  5.   0.8451 119.2560   0.0071 
+  6.   0.2140   5.0766   0.0421 
+  7.  -1.7434 251.1374  -0.0069 
+  8.   0.0698   8.3331   0.0084 
+  9.   2.2583 148.2716   0.0152 
+
+Good convergence is indicated by the t-ratios being close to zero.
+
+Overall maximum convergence ratio =  0.2596 .
+
+
+
+@2
+Estimation Results.
+-------------------
+
+Regular end of estimation algorithm.
+Total of 12529 iteration steps.
+
+
+@3
+Estimates and standard errors
+                             
+Rate parameters:
+ 0. Rate parameter                           31.0828  (  36.2238)
+
+Other parameters:
+ 1. eval:  degree (density)                                       -5.5350  (   0.6912)
+ 2. eval:  transitive ties                                         4.8134  (   0.9983)
+ 3. eval:  degree act+pop                                         -0.0108  (   0.0177)
+ 4. eval:  Newcomer ego                                            0.3722  (   6.4720)
+ 5. eval:  CareerTenure ego                                       -0.0009  (   0.0285)
+ 6. eval:  NetworkConstraint ego                                  -0.8282  (   0.4771)
+ 7. eval:  InventorDegree ego                                      0.0201  (   0.0133)
+ 8. eval:  Newcomer ego x transitive ties                          0.6913  (   9.8026)
+ 9. eval:  Newcomer ego x degree act+pop                          -0.0472  (   0.1550)
+
+
+@3
+Covariance matrices
+                   
+Covariance matrix of estimates (correlations below diagonal):
+     0.478     -0.658      0.007      0.607     -0.003      0.105     -0.002     -1.171      0.026
+    -0.954      0.997     -0.013     -1.649      0.007     -0.182      0.005      2.899     -0.056
+     0.543     -0.763      0.000      0.048      0.000      0.003      0.000     -0.079      0.001
+     0.136     -0.255      0.417     41.886     -0.147     -0.170     -0.002    -62.901      0.899
+    -0.156      0.246     -0.358     -0.796      0.001      0.000      0.000      0.220     -0.003
+     0.320     -0.382      0.374     -0.055      0.014      0.228     -0.002      0.196     -0.003
+    -0.241      0.362     -0.573     -0.028     -0.101     -0.262      0.000      0.006      0.000
+    -0.173      0.296     -0.456     -0.991      0.786      0.042      0.045     96.090     -1.436
+     0.243     -0.363      0.500      0.897     -0.725     -0.035     -0.042     -0.945      0.024
+
+Derivative matrix of expected statistics X by parameters and
+covariance/correlation matrix of X can be found using
+summary(ans) within R, or by using the 'verbose' option in Siena07.
+ 
+Total computation time 385.74 seconds.

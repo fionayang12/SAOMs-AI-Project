@@ -1,19 +1,49 @@
-# Agent (built after engine + ledger exist)
+# Agent: the supervision layer
 
-The supervision layer. Design commitments, agreed before any code:
+Runs the engine under the boundary taxonomy, records everything in the
+ledger, proposes remedies at institutional nodes, and escalates normative
+decisions to humans. The design commitments, now implemented:
 
-1. **Boundary rules are enforced by ordinary code, not by the model.** The
-   agent reads `docs/taxonomy.md` (machine-readable version to come), and the
-   policy layer decides execute / propose / escalate. The language model
-   generates respecification proposals and rationales *within* those rules;
-   it can never talk its way past a normative boundary.
-2. **Verify, then record.** Every intervention must produce evidence it took
-   effect (the seed-bug lesson, docs/decisions.md D3). The ledger records
-   evidence, not intentions.
-3. **Open-weight first.** The reference configuration must run on models any
-   researcher can obtain; a hosted-model configuration may be documented as
-   an alternative.
+1. **Code decides; the model narrates.** Diagnosis and proposal content are
+   deterministic (`proposer.py`); a language model, when configured,
+   generates the prose rationale only, and narration that names a different
+   action than the decided one is discarded. The model cannot talk its way
+   past a boundary because no execution path routes through it
+   (`policy.py` gates every state-changing action).
+2. **Configured, not hard-coded (D8).** `OpenAICompatProposer` speaks to any
+   OpenAI-compatible endpoint (a local open-weight model under Ollama or
+   llama.cpp). Set `AGENT_LLM_URL` and `AGENT_LLM_MODEL`, or pass
+   `--llm-url/--llm-model`. Absent a model, the deterministic
+   `TemplateProposer` runs and behavior is identical: the pipeline never
+   depends on model availability.
+3. **Sign-off is not admission.** Approving a respecification executes the
+   re-estimation and records it; admitting the respecified network into the
+   pooled sample is escalated as a separate normative decision.
 
-Stage 1 scope: proposals for the institutional-boundary nodes in the
-taxonomy (peripheral-effect drop, respecification suggestions), sign-off
-interface, escalation queue. Everything else is Stage 2.
+## Usage
+
+```bash
+# Supervise networks (records + escalations + proposals):
+python -m agent.supervisor --ids 308631 109049 528644 --data data/demo
+
+# Review the proposal queue:
+python -m agent.review list
+python -m agent.review show prop-528644-drop-CareerTenure
+python -m agent.review approve prop-528644-drop-CareerTenure \
+    --by "M. Howard" --note "Peripheral effect; precedent applies."
+```
+
+## Files
+
+- `taxonomy.json`: machine-readable boundary taxonomy (mirrors
+  docs/taxonomy.md; the prose version governs, this version executes).
+- `policy.py`: enforcement. `check_execute` gates every action; normative
+  nodes have no agent execution path.
+- `proposer.py`: diagnosis, proposal construction, LLM adapter.
+- `supervisor.py`: orchestration loop (estimate, record, escalate, propose).
+- `review.py`: human sign-off CLI; approval triggers the respecification.
+- `queue/`: pending and disposed proposals.
+
+Tests: `tests/test_agent_policy.py` proves the boundary rules in code,
+including that a protected (theory-bearing) effect never receives a drop
+proposal and that rejection leaves no execution trace.

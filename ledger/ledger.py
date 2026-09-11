@@ -43,6 +43,8 @@ def compile_report(records_path=RECORDS_PATH):
     if not os.path.exists(records_path):
         return "Ledger empty."
     recs = [json.loads(l) for l in open(records_path)]
+    resolved = {(r.get("ego_spell_id"), r["decision_node"])
+                for r in recs if r.get("escalation_status") == "resolved"}
     by_class = {}
     for r in recs:
         by_class.setdefault(r["boundary_class"], []).append(r)
@@ -53,7 +55,9 @@ def compile_report(records_path=RECORDS_PATH):
         for r in rs:
             tag = ""
             if r["boundary_class"] == "normative" and r.get("escalation_status") == "pending":
-                tag = "  [OPEN ESCALATION - not final]"
+                key = (r.get("ego_spell_id"), r["decision_node"])
+                tag = ("  [resolved below]" if key in resolved
+                       else "  [OPEN ESCALATION - not final]")
             lines.append(f"- {r.get('ego_spell_id','-')}: {r['decision_node']} "
                          f"({r['actor']}) {r['action']}{tag}")
         lines.append("")
