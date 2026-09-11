@@ -48,3 +48,26 @@ Format: ID | date | decision | rationale. Append; never rewrite history.
   retroactive application would alter the published 93-network sample
   (network 109049 was retained at Jaccard 0.095). Consistency requires that
   sample-defining thresholds never execute without documentation.
+- **D10** | 2026-09 | Agent architecture: code decides, the model narrates.
+  Diagnosis of instability and the content of any proposal (which effect,
+  which action) are determined by deterministic rules in agent/proposer.py;
+  a language model, when configured, generates the prose rationale only,
+  through an OpenAI-compatible adapter (reference configuration: Qwen3 14B
+  via Ollama, per D8; any substitute model, or none, yields identical
+  pipeline behavior). Narration is validated before use: text that fails to
+  name the decided action, or arrives empty, is discarded in favor of the
+  deterministic template. No execution path routes through the model, and
+  agent/policy.py gates every state-changing action against the taxonomy.
+  | The boundary framework requires that a model cannot talk its way past a
+  boundary; the only reliable guarantee is structural. A capability
+  consequence follows: model quality affects the eloquence of recorded
+  rationales and nothing else, which is what makes the open-weight choice
+  in D8 low-stakes for validity.
+- **D11** | 2026-09 | First live integration surfaced and fixed two contract
+  violations (RSiena chatter on stdout; a 1x1 matrix serialized as nested
+  array) and one demo finding: the approved CareerTenure-drop respecification
+  for network 528644 fails to terminate under all five seeds on both tested
+  platforms, so its exclusion stands with the attempted remedy in evidence. |
+  The stub validated logic but only a live consumer enforces a contract; and a
+  plausible approved remedy failing in practice is the strongest available
+  argument for evidence-before-admission.
