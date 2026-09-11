@@ -2,7 +2,9 @@
 
 RSiena estimation wrapper implementing the codified playbook from a
 401-network analysis by human researchers. The original lives in `legacy/` as the
-reference implementation; `estimate_one.R` is the modular carve-out.
+reference implementation; `estimate_one.R` is the modular carve-out. The data 
+interface is currently demo-specific; generalizing ingestion will be completed 
+after the proposal stage of the project.
 
 **The contract is the seam**: `estimate_one.R` speaks JSON on stdout
 (see CONTRACT.md). The agent, ledger, and tests all connect at that seam and
