@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 # DL random-effects pooling + exclusion-rule sensitivity.
-# Usage: Rscript meta/pool.R --results /path/to/SAOM_newcomer_results_v8.csv
+# Usage: Rscript 06_meta/pool.R --results /path/to/SAOM_newcomer_results_v8.csv
 args <- commandArgs(trailingOnly = TRUE)
 gv <- function(flag, default = NULL) { i <- which(args == flag); if (length(i)) args[i+1] else default }
 RESULTS <- gv("--results"); SE_SCREEN <- as.numeric(gv("--se-screen", "100"))

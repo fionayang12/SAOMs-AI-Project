@@ -24,19 +24,19 @@ decisions to humans. The design commitments, now implemented:
 
 ```bash
 # Supervise networks (records + escalations + proposals):
-python -m agent.supervisor --ids 308631 109049 528644 --data data/demo
+python 04_agent/supervisor.py --ids 308631 109049 528644 --data 01_data/demo
 
 # Review the proposal queue:
-python -m agent.review list
-python -m agent.review show prop-528644-drop-CareerTenure
-python -m agent.review approve prop-528644-drop-CareerTenure \
+python 04_agent/review.py list
+python 04_agent/review.py show prop-528644-drop-CareerTenure
+python 04_agent/review.py approve prop-528644-drop-CareerTenure \
     --by "M. Howard" --note "Peripheral effect; precedent applies."
 ```
 
 ## Files
 
 - `taxonomy.json`: machine-readable boundary taxonomy (mirrors
-  docs/taxonomy.md; the prose version governs, this version executes).
+  00_docs/taxonomy.md; the prose version governs, this version executes).
 - `policy.py`: enforcement. `check_execute` gates every action; normative
   nodes have no agent execution path.
 - `proposer.py`: diagnosis, proposal construction, LLM adapter.
@@ -44,6 +44,6 @@ python -m agent.review approve prop-528644-drop-CareerTenure \
 - `review.py`: human sign-off CLI; approval triggers the respecification.
 - `queue/`: pending and disposed proposals.
 
-Tests: `tests/test_agent_policy.py` proves the boundary rules in code,
+Tests: `07_tests/test_agent_policy.py` proves the boundary rules in code,
 including that a protected (theory-bearing) effect never receives a drop
 proposal and that rejection leaves no execution trace.

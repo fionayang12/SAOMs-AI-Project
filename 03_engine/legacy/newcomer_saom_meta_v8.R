@@ -40,7 +40,7 @@ library(readr)
 
 # --- CONFIGURE PATHS ---------------------------------------------------------
 # UPDATE THIS to your local path where the CSV files are stored
-data_dir   <- "/Users/michaelhoward/Dropbox/Fiona Project/SAOM Analysis"
+data_dir   <- "/path/to/SAOM Analysis"  # local folder holding the full-corpus CSVs (not distributed)
 output_csv <- file.path(data_dir, "SAOM_newcomer_results_v8.csv")
 
 # --- LOAD DATA ---------------------------------------------------------------

@@ -1,10 +1,11 @@
 """Run the three-network demo through the engine and write ledger records.
 
 This is the milestone loop: estimate -> record -> (escalate when required).
-    python engine/run_demo.py
+    python 03_engine/run_demo.py   (run from the repository root)
 """
 import json, subprocess, sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import repo_paths  # noqa: F401  (maps 04_agent/05_ledger to agent/ledger)
 from ledger.ledger import append_record
 
 CASES = [308631, 109049, 528644]
@@ -12,8 +13,8 @@ CASES = [308631, 109049, 528644]
 def main():
     for ego in CASES:
         print(f"=== network {ego} ===")
-        r = subprocess.run(["Rscript", "engine/estimate_one.R",
-                            "--ego", str(ego), "--data", "data/demo"],
+        r = subprocess.run(["Rscript", "03_engine/estimate_one.R",
+                            "--ego", str(ego), "--data", "01_data/demo"],
                            capture_output=True, text=True)
         if r.returncode != 0:
             print("engine error:", r.stderr[-500:]); continue
@@ -51,12 +52,12 @@ def main():
                 action="retained despite Jaccard below 0.20",
                 evidence={"jaccard": out["descriptives"].get("jaccard")},
                 escalation_status="resolved",
-                human_disposition="retaied, consistent with the original "
+                human_disposition="retained, consistent with the original "
                                   "analysis (decisions.md D9)",
             )
         print(f"  status: {out['final']['status']}; "
               f"conv_ratio={last.get('conv_ratio'):.3f}; max_se={last.get('max_se'):.1f}")
-    print("\nLedger written to ledger/records.jsonl")
+    print("\nLedger written to 05_ledger/records.jsonl")
 
 if __name__ == "__main__":
     main()

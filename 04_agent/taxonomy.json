@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "source": "docs/taxonomy.md",
+  "source": "00_docs/taxonomy.md",
   "classes": {
     "implementation": {
       "agent_may_execute": true,

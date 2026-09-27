@@ -1,12 +1,13 @@
 #!/usr/bin/env Rscript
 # Estimate one ego network under the v8 specification; JSON contract v0.2.
-# Usage: Rscript engine/estimate_one.R --ego 308631 --data data/demo
-#        Rscript engine/estimate_one.R --ego 528644 --data data/demo --drop CareerTenure
+# Usage (from the repository root):
+#        Rscript 03_engine/estimate_one.R --ego 308631 --data 01_data/demo
+#        Rscript 03_engine/estimate_one.R --ego 528644 --data 01_data/demo --drop CareerTenure
 #
 # --drop removes the egoX effect for the named covariate (CareerTenure or
 # NetworkConstraint only). Theory-bearing effects (Newcomer terms,
 # InventorDegree) cannot be dropped here: the engine refuses, because that
-# decision is normative (docs/taxonomy.md) and no executable path may exist
+# decision is normative (00_docs/taxonomy.md) and no executable path may exist
 # for it below the human layer.
 suppressPackageStartupMessages({ library(RSiena); library(jsonlite) })
 
@@ -17,14 +18,14 @@ gv <- function(flag, default = NULL) {
   i <- which(args == flag); if (length(i)) args[i + 1] else default
 }
 EGO      <- as.integer(gv("--ego"))
-DATA_DIR <- gv("--data", "data/demo")
+DATA_DIR <- gv("--data", "01_data/demo")
 DROP     <- gv("--drop", NA)
 MAX_ATTEMPTS <- 5; CONV_THRESH <- 0.30; SE_SCREEN <- 100
 stopifnot(!is.na(EGO))
 
 DROPPABLE <- c("CareerTenure", "NetworkConstraint")
 if (!is.na(DROP) && !(DROP %in% DROPPABLE))
-  stop(sprintf("--drop %s refused: only peripheral covariates (%s) may be dropped by this path; see docs/taxonomy.md",
+  stop(sprintf("--drop %s refused: only peripheral covariates (%s) may be dropped by this path; see 00_docs/taxonomy.md",
                DROP, paste(DROPPABLE, collapse = ", ")))
 
 el <- read.csv(file.path(DATA_DIR, "walkthrough_edgelist.csv"))
@@ -78,7 +79,7 @@ base_seed <- 12345 + EGO
 attempts <- list(); final_fit <- NULL
 for (attempt in seq_len(MAX_ATTEMPTS)) {
   seed <- base_seed + (attempt - 1) * 10000
-  # sienaAlgorithmCreate must sit INSIDE the loop (docs/decisions.md D3).
+  # sienaAlgorithmCreate must sit INSIDE the loop (00_docs/decisions.md D3).
   algo <- sienaAlgorithmCreate(projname = paste0("ego_", EGO),
                                n3 = 5000, nsub = 6, maxlike = FALSE, seed = seed)
   fit <- tryCatch(siena07(algo, data = dat, effects = eff, batch = TRUE,

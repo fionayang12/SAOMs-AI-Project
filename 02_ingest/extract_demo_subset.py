@@ -1,10 +1,10 @@
 """Extract a self-contained demo subset from the full-corpus files.
 
 Usage (on a machine with the full corpus):
-    python ingest/extract_demo_subset.py \
+    python 02_ingest/extract_demo_subset.py \
         --corpus-dir "/path/to/SAOM Analysis" \
         --ids 308631 109049 528644 \
-        --out data/demo
+        --out 01_data/demo
 """
 import argparse, os
 import pandas as pd
@@ -20,7 +20,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--corpus-dir", required=True)
     ap.add_argument("--ids", nargs="+", type=int, required=True)
-    ap.add_argument("--out", default="data/demo")
+    ap.add_argument("--out", default="01_data/demo")
     a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
     for src, dst in FILES.items():

@@ -12,7 +12,7 @@
 #     Marginal case: conv ratio 0.295, just under the 0.30 threshold, with
 #     Jaccard 0.095, well below the 0.20 stability guideline, yet retained.
 #     In the original workflow the Jaccard threshold operated as a flag
-#     rather than an exclusion rule; docs/taxonomy.md records how retention
+#     rather than an exclusion rule; 00_docs/taxonomy.md records how retention
 #     of low-Jaccard networks is classified and who decides.
 #
 #   CASE C = 528644  (stratum B, 48 inventors, 6 newcomers)
@@ -33,7 +33,7 @@
 #
 # EXPECTED OUTPUT (for verification): estimation is simulation-based, so
 # exact numbers depend on the RSiena version; with the version recorded in
-# docs/decisions.md, the per-network seed formula reproduces the original
+# 00_docs/decisions.md, the per-network seed formula reproduces the original
 # run. Qualitative pattern on any version: Case A converges immediately,
 # Case B is marginal, Case C shows an exploding career-tenure SE.
 # ==============================================================================
@@ -42,10 +42,10 @@ library(RSiena)
 library(tidyverse)
 
 # --- CONFIG -------------------------------------------------------------------
-wt_dir <- "data/demo"   # run from the repository root
+wt_dir <- "01_data/demo"   # run from the repository root
 
 # Part 4 requires the full-corpus results file, which is not distributed
-# with the demo (see data/README.md). Point this at a local copy to run the
+# with the demo (see 01_data/README.md). Point this at a local copy to run the
 # sensitivity analysis; otherwise Part 4 prints the expected result.
 full_results_csv <- Sys.getenv("SAOM_FULL_RESULTS", unset = "")
 
@@ -182,7 +182,7 @@ estimate_case <- function(cs, max_attempts = MAX_ATTEMPTS) {
     # A lesson from the project history: sienaAlgorithmCreate must sit INSIDE
     # this loop. Modifying algo$seed after creation is silently ignored by
     # RSiena, so an early version of this workflow made five identical
-    # "attempts." Design rule adopted for the whole system (docs/decisions.md
+    # "attempts." Design rule adopted for the whole system (00_docs/decisions.md
     # D3): verify interventions took effect; record evidence, not intentions.
     algo <- sienaAlgorithmCreate(projname = paste0("ego_", cs$ego_id),
                                  n3 = 5000, nsub = 6, maxlike = FALSE,
@@ -221,7 +221,7 @@ print_effects_table <- function(fit) {
     cat("network and re-estimate (a respecification, at the cost of breaking\n")
     cat("specification commonality across networks), or exclude the network\n")
     cat("(which changes the analytic sample). The original run chose\n")
-    cat("exclusion, a normative-boundary decision under docs/taxonomy.md;\n")
+    cat("exclusion, a normative-boundary decision under 00_docs/taxonomy.md;\n")
     cat("Part 4 shows what that decision cost.\n")
   } else {
     cat("\nCOMMENT: all standard errors fall well inside the screen; these\n")
@@ -241,7 +241,7 @@ for (label in c("A", "B", "C")) {
 # PART 4: SENSITIVITY OF POOLED ESTIMATES TO THE CASE C EXCLUSION
 # ==============================================================================
 # Requires the full-corpus results file (94 rows), which is not distributed
-# with the demo; see data/README.md for the data policy.
+# with the demo; see 01_data/README.md for the data policy.
 
 dl_meta <- function(theta, se) {
   ok <- is.finite(theta) & is.finite(se) & se > 0

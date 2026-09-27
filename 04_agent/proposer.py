@@ -1,6 +1,6 @@
 """Proposal generation: diagnose, decide by rule, narrate (optionally by LLM).
 
-Design rule (docs/decisions.md): the *decision* about what to propose is made
+Design rule (00_docs/decisions.md D10): the *decision* about what to propose is made
 by deterministic diagnosis; a language model, when configured, generates the
 prose rationale only. The model narrates; code decides. If the model is
 absent or unreachable, the template rationale is used and behavior is
@@ -27,7 +27,7 @@ def template_rationale(ego, diag, drop_covariate):
             f"Proposal: re-estimate with {drop_covariate} removed for this "
             f"network only, preserving all theory-bearing effects. "
             f"Precedent: peripheral-effect drops are the designated first "
-            f"remedy (docs/taxonomy.md). Cost: breaks specification "
+            f"remedy (00_docs/taxonomy.md). Cost: breaks specification "
             f"commonality for this network; the ledger records the delta.")
 
 class TemplateProposer:

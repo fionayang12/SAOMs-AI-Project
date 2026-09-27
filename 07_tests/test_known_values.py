@@ -5,7 +5,8 @@ import pytest
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
-DEMO = os.path.join(ROOT, "data", "demo")
+import repo_paths  # noqa: F401  (maps 04_agent/05_ledger to agent/ledger)
+DEMO = os.path.join(ROOT, "01_data", "demo")
 
 from ledger.ledger import append_record
 

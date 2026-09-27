@@ -3,7 +3,7 @@
 One command, one job, one JSON object on stdout:
 
 ```bash
-Rscript engine/estimate_one.R --ego 308631 --data data/demo
+Rscript 03_engine/estimate_one.R --ego 308631 --data 01_data/demo
 ```
 
 ## Output shape
@@ -37,4 +37,4 @@ Rscript engine/estimate_one.R --ego 308631 --data data/demo
    surfaced for the agent/human layer; the engine still returns estimates.
 3. Nothing is printed to stdout except the JSON (RSiena chatter goes to
    stderr or is suppressed), so callers can `json.loads` the output directly.
-4. Any schema change bumps the version here and in docs/decisions.md.
+4. Any schema change bumps the version here and in 00_docs/decisions.md.

@@ -1,12 +1,12 @@
 # Data
 
-## Policy (agreed; see docs/decisions.md)
+## Policy (agreed; see 00_docs/decisions.md)
 
 1. **Demo subset (committed):** derived network CSVs for the exemplar
    networks. USPTO-derived, public-domain source, small. Currently the three
    walkthrough networks.
 2. **Full corpus (never committed):** the 401-network derived files stay
-   outside the repository. Scripts in `ingest/` document how they are built.
+   outside the repository. Scripts in `02_ingest/` document how they are built.
 3. **Raw USPTO bulk files (never committed):** build scripts only.
 
 ## demo/ contents

@@ -1,15 +1,16 @@
 """Supervisor: run the engine under policy, record everything, propose, escalate.
 
-    python -m agent.supervisor --ids 308631 109049 528644 --data data/demo
+    python 04_agent/supervisor.py --ids 308631 109049 528644 --data 01_data/demo
 
 For each network: estimate (implementation record), check flags, escalate
-normative conditions, and file institutional proposals in agent/queue/ for
-human sign-off (agent/review.py). The supervisor never executes a
+normative conditions, and file institutional proposals in 04_agent/queue/ for
+human sign-off (04_agent/review.py). The supervisor never executes a
 respecification itself; review.py does, against an approved proposal.
 """
 import argparse, json, os, subprocess, sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import repo_paths  # noqa: F401  (maps 04_agent/05_ledger to agent/ledger)
 from ledger.ledger import append_record, RECORDS_PATH
 from agent.policy import Policy
 from agent.proposer import make_proposal, TemplateProposer, OpenAICompatProposer
@@ -18,7 +19,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 QUEUE = os.path.join(HERE, "queue")
 
 def run_engine(ego, data_dir, engine_cmd=None, drop=None):
-    cmd = list(engine_cmd or ["Rscript", "engine/estimate_one.R"])
+    cmd = list(engine_cmd or ["Rscript", "03_engine/estimate_one.R"])
     cmd += ["--ego", str(ego), "--data", data_dir]
     if drop:
         cmd += ["--drop", drop]
@@ -84,7 +85,7 @@ def supervise_one(ego, data_dir, pol, proposer, engine_cmd=None,
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--ids", nargs="+", type=int, required=True)
-    ap.add_argument("--data", default="data/demo")
+    ap.add_argument("--data", default="01_data/demo")
     ap.add_argument("--llm-url", default=os.environ.get("AGENT_LLM_URL", ""))
     ap.add_argument("--llm-model", default=os.environ.get("AGENT_LLM_MODEL", ""))
     a = ap.parse_args()
@@ -99,7 +100,7 @@ def main():
               f"max_se={last.get('max_se'):.1f}")
         for act in actions:
             print(f"  -> {act}")
-    print("\nPending items: python -m agent.review list")
+    print("\nPending items: python 04_agent/review.py list")
 
 if __name__ == "__main__":
     main()

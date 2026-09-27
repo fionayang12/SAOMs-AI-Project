@@ -4,13 +4,14 @@ import pytest
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
+import repo_paths  # noqa: F401  (maps 04_agent/05_ledger to agent/ledger)
 
 from agent.policy import Policy, PolicyViolation
 from agent.proposer import make_proposal, TemplateProposer
 from agent.supervisor import supervise_one
 from agent import review
 
-STUB = [sys.executable, os.path.join(ROOT, "tests", "stub_engine.py")]
+STUB = [sys.executable, os.path.join(ROOT, "07_tests", "stub_engine.py")]
 
 def _tmp():
     d = tempfile.mkdtemp()

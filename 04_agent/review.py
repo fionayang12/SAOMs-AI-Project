@@ -1,10 +1,10 @@
 """Sign-off interface for institutional proposals.
 
-    python -m agent.review list
-    python -m agent.review show prop-528644-drop-CareerTenure
-    python -m agent.review approve prop-528644-drop-CareerTenure \
+    python 04_agent/review.py list
+    python 04_agent/review.py show prop-528644-drop-CareerTenure
+    python 04_agent/review.py approve prop-528644-drop-CareerTenure \
         --by "M. Howard" --note "Peripheral effect; precedent applies."
-    python -m agent.review reject  <id> --by NAME --note REASON
+    python 04_agent/review.py reject  <id> --by NAME --note REASON
 
 Approval executes the re-estimation under the approved proposal, records the
 evidence, and then escalates admission of the respecified network as a NEW
@@ -14,6 +14,7 @@ the pooled sample.
 import argparse, json, os, sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import repo_paths  # noqa: F401  (maps 04_agent/05_ledger to agent/ledger)
 from ledger.ledger import append_record, RECORDS_PATH
 from agent.policy import Policy
 from agent.supervisor import run_engine, QUEUE
@@ -118,7 +119,7 @@ def main():
         s.add_argument("pid"); s.add_argument("--by", required=True)
         s.add_argument("--note", required=True)
         if name == "approve":
-            s.add_argument("--data", default="data/demo")
+            s.add_argument("--data", default="01_data/demo")
     s = sub.add_parser("resolve")
     s.add_argument("--ego", type=int, required=True)
     s.add_argument("--node", required=True)

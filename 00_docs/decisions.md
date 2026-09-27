@@ -71,3 +71,33 @@ Format: ID | date | decision | rationale. Append; never rewrite history.
   The stub validated logic but only a live consumer enforces a contract; and a
   plausible approved remedy failing in practice is the strongest available
   argument for evidence-before-admission.
+- **D12** | 2026-09 | Folders renumbered in reviewer reading order:
+  docs -> 00_docs, data -> 01_data, ingest -> 02_ingest, engine -> 03_engine,
+  agent -> 04_agent, ledger -> 05_ledger, meta -> 06_meta, tests -> 07_tests.
+  Python cannot import a package whose name begins with a digit, so
+  repo_paths.py at the root registers 04_agent and 05_ledger under their
+  working names (agent, ledger); entry points import it once, and all other
+  imports are unchanged. Commands now run as scripts from the repository root
+  (e.g. python 04_agent/supervisor.py in place of python -m agent.supervisor).
+  The three RSiena output logs moved from the root to 03_engine/siena_logs/.
+  | The numbered order lets a reviewer read rules, then data, then the
+  pipeline in execution order, then tests. Entries D1 through D11 keep the
+  original folder names as written; the mapping above translates them.
+  The description field in 05_ledger/schema.json still cites docs/taxonomy.md;
+  it is left unchanged because the schema is frozen at v1.0 (D6).
+- **D13** | 2026-09 | Known gap in the committed demo ledger, recorded rather
+  than repaired. For network 528644 the ledger holds the agent's proposal to
+  drop CareerTenure (institutional, status pending), and the queue file
+  04_agent/queue/prop-528644-drop-CareerTenure.json also shows it pending. The
+  ledger holds no record of the human approval, the re-estimation that
+  followed, or the agent's escalation of admission for the respecified
+  network. The human dispositions for 528644 (exclude_unstable_network,
+  admit_respecified_network) nonetheless refer to the approved respecification
+  and its failure on all five seeds, and the first of them points to a
+  re-estimation record that the committed ledger does not contain. The failed
+  re-estimation itself is documented in D11. | The ledger is append-only, and
+  records written after the fact would appear contemporaneous with the events
+  they describe. The committed records stay as they are; this entry documents
+  the missing records. A live approval through 04_agent/review.py writes all
+  three record types, so the gap will not recur when approvals run through the
+  review interface.
