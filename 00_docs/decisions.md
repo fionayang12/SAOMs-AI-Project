@@ -101,3 +101,12 @@ Format: ID | date | decision | rationale. Append; never rewrite history.
   the missing records. A live approval through 04_agent/review.py writes all
   three record types, so the gap will not recur when approvals run through the
   review interface.
+- **D14** | 2026-09 | Engine JSON contract documented at v0.2
+  (03_engine/CONTRACT.md). The engine emits a `spec` object recording the
+  specification version and any peripheral effect dropped under `--drop`;
+  the ledger stores it as evidence for re-estimations. CONTRACT.md still
+  described v0.1, and the version bump was not logged when the field was
+  added. This entry records it. The example output now uses the recorded v8
+  values for network 308631 and the pinned RSiena version (1.6.6, D7). | Rule
+  4 of the contract requires the bump to be logged here. The change adds a
+  field and removes none, so code written against v0.1 continues to work.
