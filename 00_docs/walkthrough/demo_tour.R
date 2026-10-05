@@ -38,6 +38,15 @@
 # Case B is marginal, Case C shows an exploding career-tenure SE.
 # ==============================================================================
 
+# Required packages:
+# Please make sure the following packages are installed before running this script:
+# - RSiena (version 1.6.6)
+# - tidyverse
+
+# If they are not installed, please install them using:
+# install.packages("tidyverse")
+# install.packages("RSiena")
+
 library(RSiena)
 library(tidyverse)
 
