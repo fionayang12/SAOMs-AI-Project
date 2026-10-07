@@ -237,7 +237,7 @@ print_effects_table <- function(fit) {
     cat("estimates enter the pooled analysis as estimated.\n")
   }
 }
-
+# The following lines may take a few minutes to run.
 for (label in c("A", "B", "C")) {
   cs <- build_case(CHOSEN[[label]])
   print_descriptives(cs, label)
