@@ -1,0 +1,7 @@
+# RSiena writes its output log to the working directory
+/ego_*.txt
+__pycache__/
+.pytest_cache/
+.Rhistory
+.RData
+.DS_Store

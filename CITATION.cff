@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "SAOMs-AI-Project: AI-supervised estimation of stochastic actor-oriented models with a decision ledger"
+type: software
+version: "stage1-submission"
+license: MIT
+repository-code: "https://github.com/fionayang12/SAOMs-AI-Project"
+authors:
+  - family-names: Howard
+    given-names: Michael D.
+    affiliation: Iowa State University
+  - family-names: Kim
+    given-names: Ji Youn
+  - family-names: Cox Pahnke
+    given-names: Emily
+  - family-names: Yang
+    given-names: Fiona
+    affiliation: Iowa State University
+keywords:
+  - stochastic actor-oriented models
+  - RSiena
+  - network analysis
+  - research transparency
+  - human-in-the-loop AI

@@ -7,8 +7,9 @@ are governed by field norms and need human sign-off; **normative** decisions
 change what the study claims (especially who is in the analytic sample) and
 are never delegated.
 
-Contested classifications are welcome: open an issue, argue, and the
-resolution gets logged in decisions.md.
+Contested classifications are welcome: open an issue using the
+"Classification challenge" template, and the resolution is logged in
+decisions.md.
 
 | Decision node | Historical example | Class | Agent handling |
 |---|---|---|---|
@@ -23,8 +24,8 @@ resolution gets logged in decisions.md.
 | Exclude a nominally converged but unstable network | The v8 SE > 100 exclusion (network 528644) | normative | Always escalate; attach sensitivity report showing pooled results with and without |
 | Choose between specifications with different yield | v7 (43.9%, no interactions) vs. v8 (23.3%, theory-bearing interactions) | normative | Never delegated; agent makes the tradeoff visible (side-by-side pooled results) |
 | Drop a theory-bearing effect anywhere | Newcomer interactions carry the argument | normative | Always escalate, regardless of convergence benefit |
-| Admit a respecified network into pooled results | Any rescued Case-C-type network | normative | Always escalate; ledger records the specification delta and the human disposition |
-| Retain or exclude a network flagged for low Jaccard (< 0.20) | 109049 retained at Jaccard 0.095 | normative | Engine flags automatically and never decides; retention or exclusion is escalated with a sensitivity report; disposition recorded in the ledger (see decisions.md D9) |
+| Admit a respecified network into pooled results | Any rescue of a network like 528644 | normative | Always escalate; ledger records the specification delta and the human disposition |
+| Retain or exclude a network flagged for low Jaccard (< 0.20) | 109049 retained at Jaccard 0.095 | normative | Engine flags automatically and never decides; retention or exclusion is escalated, and the disposition is recorded in the ledger (see decisions.md D9) |
 
 The low-Jaccard case above was identified during development: the original
 workflow applied the 0.20 guideline as a flag, and network 109049 was

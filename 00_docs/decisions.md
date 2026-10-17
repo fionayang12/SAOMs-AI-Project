@@ -110,3 +110,28 @@ Format: ID | date | decision | rationale. Append; never rewrite history.
   values for network 308631 and the pinned RSiena version (1.6.6, D7). | Rule
   4 of the contract requires the bump to be logged here. The change adds a
   field and removes none, so code written against v0.1 continues to work.
+- **D15** | 2026-10 | Pre-submission corrections and release freeze.
+  (a) `03_engine/run_demo.py` is now a wrapper around
+  `04_agent/supervisor.py`. The earlier version wrote the low-Jaccard
+  retention for network 109049 directly as a resolved human disposition, which
+  bypassed the escalation path; the committed ledger was produced by the
+  supervisor, not by that script. (b) Pooled estimates from the 93-network
+  subset of the earlier analysis are no longer quoted in the repository
+  (06_meta/README.md, the walkthrough, and the effects exhibit); they will be
+  reported in the full study. (c) D9 refers to "the published 93-network
+  sample"; it should read "the 93-network sample retained in the earlier
+  analysis." The entry is left as written because this log is append-only.
+  (d) Added a reviewer guide to the root README, CITATION.cff, issue templates
+  for use cases and classification challenges, and a .gitignore (cited in
+  03_engine/README.md but missing). (e) The RSiena logs in
+  03_engine/siena_logs come from a rerun on 2026-10-09; their seeds,
+  convergence ratios, and standard errors match the ledger records written on
+  2026-09-11, and the 528644 log contains the five non-completing attempts on
+  the respecified model described in D11 and D13. (f) The version submitted
+  with the Stage 1 proposal is frozen as the release tagged
+  `stage1-submission`. (g) D7 describes RSiena 1.6.6 as the version used
+  for the v8 run. That version is not documented; 1.6.6 is the version
+  pinned for this repository and used for the demonstration ledger and logs,
+  which do not reproduce the exact v8 values. | Each correction aligns the repository with what it
+  demonstrates and with the proposal documents; the tag gives reviewers a
+  fixed version while development continues on `main`.

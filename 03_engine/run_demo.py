@@ -1,63 +1,33 @@
-"""Run the three-network demo through the engine and write ledger records.
+"""Run the three-network demonstration through the supervisor agent.
 
-This is the milestone loop: estimate -> record -> (escalate when required).
-    python 03_engine/run_demo.py   (run from the repository root)
+    python 03_engine/run_demo.py            (run from the repository root)
+
+This is a convenience wrapper for
+    python 04_agent/supervisor.py --ids 308631 109049 528644 --data 01_data/demo
+Any further arguments (for example --llm-url and --llm-model) are passed on to
+the supervisor. The supervisor estimates each network, writes ledger records,
+escalates normative decisions to a human, and files institutional proposals in
+04_agent/queue/ for sign-off through 04_agent/review.py.
+
+An earlier version of this script wrote the low-Jaccard retention for network
+109049 directly as a resolved human disposition. It was replaced by this
+wrapper so that every run follows the same boundary rules as the supervisor
+(00_docs/decisions.md D15).
 """
-import json, subprocess, sys, os
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-import repo_paths  # noqa: F401  (maps 04_agent/05_ledger to agent/ledger)
-from ledger.ledger import append_record
+import os
+import subprocess
+import sys
 
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CASES = [308631, 109049, 528644]
 
+
 def main():
-    for ego in CASES:
-        print(f"=== network {ego} ===")
-        r = subprocess.run(["Rscript", "03_engine/estimate_one.R",
-                            "--ego", str(ego), "--data", "01_data/demo"],
-                           capture_output=True, text=True)
-        if r.returncode != 0:
-            print("engine error:", r.stderr[-500:]); continue
-        out = json.loads(r.stdout)
-        last = out["attempts"][-1]
-        # Implementation-boundary record: the estimation itself
-        append_record(
-            ego_spell_id=ego, decision_node="estimate_with_retry",
-            boundary_class="implementation", actor="rule",
-            action=f"estimated; status={out['final']['status']} on attempt {last['attempt']}",
-            evidence={"attempts": out["attempts"], "software": out.get("software")},
-        )
-        flags = out["final"].get("flags", {})
-        if flags.get("se_screen_tripped"):
-            # Normative boundary: the engine flags, a human decides.
-            append_record(
-                ego_spell_id=ego, decision_node="exclude_unstable_network",
-                boundary_class="normative", actor="agent",
-                action="ESCALATED: SE screen tripped; exclusion requires human disposition",
-                evidence={"max_se": last.get("max_se")},
-                escalation_status="pending",
-            )
-            print("  -> SE screen tripped: escalated to human (see ledger)")
-        if flags.get("jaccard_below_020"):
-            # Normative boundary (D9): low Jaccard flagged for human decision.
-            # For the demo networks the retention decision was made by the 
-            # researchers in the original analysis, so the record carries
-            # actor="human" and a resolved status with its disposition. When
-            # the agent layer later meets a NEWLY flagged network, this same
-            # node fires with actor="agent" and escalation_status="pending"
-            # until a human disposes of it.
-            append_record(
-                ego_spell_id=ego, decision_node="retain_low_jaccard_network",
-                boundary_class="normative", actor="human",
-                action="retained despite Jaccard below 0.20",
-                evidence={"jaccard": out["descriptives"].get("jaccard")},
-                escalation_status="resolved",
-                human_disposition="retained, consistent with the original "
-                                  "analysis (decisions.md D9)",
-            )
-        print(f"  status: {out['final']['status']}; "
-              f"conv_ratio={last.get('conv_ratio'):.3f}; max_se={last.get('max_se'):.1f}")
-    print("\nLedger written to 05_ledger/records.jsonl")
+    cmd = [sys.executable, os.path.join(ROOT, "04_agent", "supervisor.py"),
+           "--ids", *[str(c) for c in CASES], "--data", "01_data/demo",
+           *sys.argv[1:]]
+    return subprocess.call(cmd, cwd=ROOT)
+
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

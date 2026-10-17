@@ -4,6 +4,11 @@
 # This script walks three networks from the demo subset, chosen to span the
 # estimation regimes the system must handle:
 #
+# Diagnostics quoted below are the values recorded in the earlier analysis
+# (01_data/demo/walkthrough_v8_results_rows.csv). The demonstration ledger,
+# estimated with the per-network seeds, shows the same pattern with different
+# exact values (see the root README, "Reproducibility notes").
+#
 #   CASE A = 308631  (stratum A, 58 inventors, 13 newcomers)
 #     Clean baseline: conv ratio 0.051, Jaccard 0.323, max SE 1.68.
 #     Every diagnostic healthy; calibrates what routine estimation looks like.
@@ -28,14 +33,15 @@
 #
 # VALIDATION: the wave-construction logic below exactly reproduces the
 # recorded ties_w1, ties_w2, and Jaccard for all three networks, and the DL
-# meta-analysis function reproduces the recorded pooled values from the 93
-# retained networks (e.g., newcomer_x_trans mu = -1.95, z = -5.12).
+# meta-analysis function reproduces the pooled values recorded for the
+# 93-network subset of the earlier analysis (reported in the full study).
 #
 # EXPECTED OUTPUT (for verification): estimation is simulation-based, so
-# exact numbers depend on the RSiena version; with the version recorded in
-# 00_docs/decisions.md, the per-network seed formula reproduces the original
-# run. Qualitative pattern on any version: Case A converges immediately,
-# Case B is marginal, Case C shows an exploding career-tenure SE.
+# exact numbers depend on the RSiena version. With RSiena 1.6.6 (decisions.md
+# D7), the per-network seeds reproduce the demonstration ledger exactly; they
+# do not reproduce the exact values recorded in the earlier analysis.
+# Qualitative pattern on any version: Case A converges immediately, Case B is
+# marginal, Case C shows an exploding career-tenure SE.
 # ==============================================================================
 
 # Required packages:
@@ -281,12 +287,7 @@ if (nzchar(full_results_csv) && file.exists(full_results_csv)) {
   cat("\nPART 4 SKIPPED: full-corpus results file not found.\n")
   cat("Set the SAOM_FULL_RESULTS environment variable to a local copy to run\n")
   cat("the sensitivity analysis.\n")
-  cat("Expected result on the recorded v8 results: including network 528644\n")
-  cat("changes no significance conclusions; the largest movements are\n")
-  cat("newcomer_x_trans -1.948 -> -1.939 and net_constraint_ego -0.125 ->\n")
-  cat("-0.116 (z -1.70 -> -1.59). The exclusion was inferentially cheap,\n")
-  cat("and that is documented rather than assumed.\n")
+  cat("Pooled results for the broader sample will be reported in the full study.\n")
 }
-cat("\nCLOSING COMMENT: an exclusion that is inferentially cheap in one corpus\n")
-cat("is a finding, not a guarantee. The ledger's job is to make this check\n")
-cat("automatic for every exclusion, every time.\n")
+cat("\nCLOSING COMMENT: the ledger's job is to make this sensitivity check\n")
+cat("automatic for every exclusion.\n")

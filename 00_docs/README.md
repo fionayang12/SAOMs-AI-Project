@@ -2,6 +2,7 @@
 
 - `taxonomy.md`: the decision taxonomy (the intellectual core).
 - `decisions.md`: log of build decisions with rationales.
-- `walkthrough/`: coordination-meeting materials (three-case walkthrough).
-- `network_effects_exhibit.svg` / `.pdf`: the nine-effect exhibit for the
-  technical appendix.
+- `walkthrough/demo_tour.R`: manual baseline that estimates the three
+  demonstration networks in RSiena without the agent.
+- `network_effects_exhibit.svg` / `.pdf`: diagram of the nine effects in the
+  model specification.
